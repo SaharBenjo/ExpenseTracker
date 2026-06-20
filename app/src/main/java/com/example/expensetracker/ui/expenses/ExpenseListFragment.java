@@ -44,6 +44,10 @@ public class ExpenseListFragment extends Fragment {
             Navigation.findNavController(v).navigate(R.id.action_expenseListFragment_to_addEditExpenseFragment);
         });
 
+        binding.btnProfile.setOnClickListener(v -> {
+            Navigation.findNavController(v).navigate(R.id.action_expenseListFragment_to_profileFragment);
+        });
+
         String userId = prefManager.getUserId();
         if (userId != null) {
             expenseViewModel.getExpensesForUser(userId).observe(getViewLifecycleOwner(), expenses -> {
