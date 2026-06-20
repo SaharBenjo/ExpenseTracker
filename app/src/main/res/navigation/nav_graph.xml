@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/loginFragment">
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.expensetracker.ui.auth.LoginFragment"
+        android:label="Login"
+        tools:layout="@layout/fragment_login">
+        <action
+            android:id="@+id/action_loginFragment_to_registerFragment"
+            app:destination="@id/registerFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_expenseListFragment"
+            app:destination="@id/expenseListFragment"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/registerFragment"
+        android:name="com.example.expensetracker.ui.auth.RegisterFragment"
+        android:label="Register"
+        tools:layout="@layout/fragment_register">
+        <action
+            android:id="@+id/action_registerFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/expenseListFragment"
+        android:name="com.example.expensetracker.ui.expenses.ExpenseListFragment"
+        android:label="Expenses"
+        tools:layout="@layout/fragment_expense_list">
+        <action
+            android:id="@+id/action_expenseListFragment_to_addEditExpenseFragment"
+            app:destination="@id/addEditExpenseFragment" />
+        <action
+            android:id="@+id/action_expenseListFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/addEditExpenseFragment"
+        android:name="com.example.expensetracker.ui.expenses.AddEditExpenseFragment"
+        android:label="Add/Edit Expense"
+        tools:layout="@layout/fragment_add_edit_expense" />
+
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.example.expensetracker.ui.profile.ProfileFragment"
+        android:label="Profile"
+        tools:layout="@layout/fragment_profile" />
+
+</navigation>
