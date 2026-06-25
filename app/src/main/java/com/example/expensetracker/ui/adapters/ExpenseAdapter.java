@@ -15,6 +15,15 @@ import java.util.List;
 public class ExpenseAdapter extends RecyclerView.Adapter<ExpenseAdapter.ExpenseViewHolder> {
 
     private List<Expense> expenses = new ArrayList<>();
+    private OnExpenseDeleteListener deleteListener;
+
+    public interface OnExpenseDeleteListener {
+        void onDelete(Expense expense);
+    }
+
+    public void setOnExpenseDeleteListener(OnExpenseDeleteListener listener) {
+        this.deleteListener = listener;
+    }
 
     public void setExpenses(List<Expense> expenses) {
         this.expenses = expenses;
@@ -33,6 +42,11 @@ public class ExpenseAdapter extends RecyclerView.Adapter<ExpenseAdapter.ExpenseV
         Expense expense = expenses.get(position);
         holder.binding.tvTitle.setText(expense.getTitle());
         holder.binding.tvAmount.setText(String.valueOf(expense.getAmount()));
+        holder.binding.btnDelete.setOnClickListener(v -> {
+            if (deleteListener != null) {
+                deleteListener.onDelete(expense);
+            }
+        });
     }
 
     @Override

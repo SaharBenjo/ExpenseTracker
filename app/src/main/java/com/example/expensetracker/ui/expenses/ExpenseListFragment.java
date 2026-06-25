@@ -58,6 +58,9 @@ public class ExpenseListFragment extends Fragment {
 
     private void setupRecyclerView() {
         adapter = new ExpenseAdapter();
+        adapter.setOnExpenseDeleteListener(expense -> {
+            expenseViewModel.delete(expense);
+        });
         binding.rvExpenses.setLayoutManager(new LinearLayoutManager(getContext()));
         binding.rvExpenses.setAdapter(adapter);
     }
